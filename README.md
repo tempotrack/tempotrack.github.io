@@ -1,0 +1,38 @@
+# TempoTrack project page
+
+Standalone static project page for **TempoTrack: Temporally Grounded Multi-Track Control for Streaming Joint Audio-Video Generation**. The page presents the problem, Hierarchical Context Routing method, four synchronized demonstrations, and headline MTBench results. It uses plain HTML, CSS, and JavaScript with no build step or third-party runtime dependency.
+
+## Local preview
+
+```bash
+bash serve.sh
+```
+
+Then open <http://127.0.0.1:8000>. The included local server supports MP4 Range requests, so cue-to-video seeking works during preview. Do not open `index.html` directly with `file://`; the page loads sanitized cue manifests with `fetch()`.
+
+## Validate
+
+```bash
+bash scripts/check_site.sh
+```
+
+## Publish with GitHub Pages
+
+Copy this directory to the root of a GitHub Pages repository, or to that repository's configured Pages source directory. The site is fully relative-path based; `.nojekyll` keeps the assets unchanged.
+
+The four MP4 files are English-only 406×720 audience exports from the original compositor's default CRF 18 quality path, encoded as H.264/AAC with a two-second GOP and the `moov` atom at the front. Each file is 1.96–5.13 MB. The player uses `preload="none"`, so opening the page loads a poster instead of downloading video before the visitor presses play. Project descriptions and reported metrics follow the September 26, 2026 TempoTrack manuscript.
+
+## Contents
+
+```text
+index.html               page structure and content
+styles.css               responsive visual system
+app.js                   case switching and synchronized timeline
+assets/videos/           four compact live-room videos (audience HUD only)
+assets/posters/          poster frames extracted at 7.5 seconds
+assets/manifests/        sanitized authored-cue metadata
+assets/audience/         mock live-room interaction fixture
+scripts/check_site.sh    static and media validation
+scripts/serve_site.py    dependency-free local server with MP4 Range support
+docs/DESIGN_NOTES.md     design rationale and source mapping
+```
